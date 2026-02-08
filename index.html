@@ -1,1 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Free BMI Calculator Online | Body Mass Index Calculator</title>
+  <meta name="description" content="Free BMI Calculator online. Calculate your Body Mass Index easily using height and weight. Simple, fast and free tool.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f8fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    p {
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f1f1f1;
+      border-radius: 5px;
+      display: none;
+    }
+    .disclaimer {
+      margin-top: 25px;
+      font-size: 13px;
+      color: #666;
+    }
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+    footer a {
+      margin: 0 10px;
+      color: #007bff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Free BMI Calculator</h1>
+  <p>
+    Use this free online BMI calculator to calculate your Body Mass Index.
+    Enter your height and weight to quickly check your BMI category.
+  </p>
+
+  <label for="height">Height (cm)</label>
+  <input type="number" id="height" placeholder="e.g. 170">
+
+  <label for="weight">Weight (kg)</label>
+  <input type="number" id="weight" placeholder="e.g. 65">
+
+  <button onclick="calculateBMI()">Calculate BMI</button>
+
+  <div class="result" id="result"></div>
+
+  <div class="disclaimer">
+    <strong>Disclaimer:</strong> This BMI calculator is for informational purposes only.
+    It is not intended to replace professional medical advice, diagnosis, or treatment.
+  </div>
+
+  <footer>
+    <a href="about.html">About</a> |
+    <a href="contact.html">Contact</a> |
+    <a href="privacy.html">Privacy Policy</a>
+  </footer>
+</div>
+
+<script>
+  function calculateBMI() {
+    const height = document.getElementById('height').value;
+    const weight = document.getElementById('weight').value;
+    const resultDiv = document.getElementById('result');
+
+    if (height === '' || weight === '' || height <= 0 || weight <= 0) {
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML = 'Please enter valid height and weight values.';
+      return;
+    }
+
+    const heightInMeters = height / 100;
+    const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(1);
+
+    let category = '';
+    if (bmi < 18.5) {
+      category = 'Underweight';
+    } else if (bmi < 25) {
+      category = 'Normal weight';
+    } else if (bmi < 30) {
+      category = 'Overweight';
+    } else {
+      category = 'Obese';
+    }
+
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = `
+      <strong>Your BMI:</strong> ${bmi}<br>
+      <strong>Category:</strong> ${category}
+    `;
+  }
+</script>
+
+</body>
+</html>
 
